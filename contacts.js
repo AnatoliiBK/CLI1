@@ -3,7 +3,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 const crypto = require("node:crypto");
 
-const contactsPath = path.join(__dirname, 'contacts.json');
+const contactsPath = path.join(__dirname, 'db/contacts.json');
 
 async function read () {
   const data = await fs.readFile(contactsPath, 'utf8');
@@ -32,7 +32,7 @@ async function removeContact(contactId) {
   const index = data.find(contact => contact.id === contactId);
 
   if (index === -1) {
-    return undefined;
+    return null;
   }
   // const withoutContact = [...data.slice(0, index), ...data.slice(index + 1)];
   // await write(withoutContact);

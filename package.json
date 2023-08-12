@@ -6,7 +6,7 @@
   "scripts": {
     
     "start": "node index",
-    "start:dev": "nodemon index"
+    "dev": "nodemon index"
   },
   "repository": {
     "type": "git",
