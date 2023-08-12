@@ -1,12 +1,12 @@
-const { Command } = require('commander');
-const program = new Command();
+// const { Command } = require('commander');
+// const program = new Command();
 
 const contacts = require('./contacts');
 // TODO: рефакторити
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case 'list':
-      const allCntacts = await contacts.listContacts();
+      const allContacts = await contacts.listContacts();
       return console.table(allContacts);
 
     case 'get':
@@ -14,7 +14,7 @@ async function invokeAction({ action, id, name, email, phone }) {
       return console.table(oneContact);
 
     case 'add':
-      const newContact = await contacts.addContact(name, email, phone);
+      const newContact = await contacts.addContact({name, email, phone});
       return console.table(newContact);
 
     case 'remove':
@@ -26,14 +26,21 @@ async function invokeAction({ action, id, name, email, phone }) {
   }
 }
 
-program
-    .option("-a, --action, <type>")
-    .option("-i, --id, <type>")
-    .option("-n, --name, <type>")
-    .option("-e, --email, <type>")
-    .option("-p, --phone, <type>");
+// program
+//     .option("-a, --action, <type>")
+//     .option("-i, --id, <type>")
+//     .option("-n, --name, <type>")
+//     .option("-e, --email, <type>")
+//     .option("-p, --phone, <type>");
 
-program.parse();
+// program.parse();
 
-const options = program.opts();
-invokeAction(options)
+// const options = program.opts();
+// invokeAction(options)
+
+
+
+// invokeAction({ action: "list" });
+// invokeAction({ action: "get", id: "1DEXoP8AuCGYc1YgoQ6hw" });
+// invokeAction({ action: "add", name: "name", email: "email", phone: "phone" });
+invokeAction({ action: "remove", id: "rsKkOQUi80UsgVPCcLZZW" });
