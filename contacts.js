@@ -29,7 +29,7 @@ async function getContactById(contactId) {
 async function removeContact(contactId) {
   // ...твій код. Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
   const data = await read();
-  const index = data.find(contact => contact.id === contactId);
+  const index = data.findIndex(contact => contact.id === contactId);
 
   if (index === -1) {
     return null;
@@ -37,8 +37,8 @@ async function removeContact(contactId) {
   // const withoutContact = [...data.slice(0, index), ...data.slice(index + 1)];
   // await write(withoutContact);
   // return data[index];
-  const result = data.splice(index, 1);
-  await write();
+  const [result] = data.splice(index, 1);
+  await write(data);
   return result;  
 }
 
